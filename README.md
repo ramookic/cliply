@@ -103,7 +103,7 @@ CREATE POLICY public_read_clicks
 
 ### 3. Set up environment variables
 
-Rename **example.env** to **.env.local** 
+Rename **example.env** to **.env.local**  and replace with your values
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=<your_supabase_url>
