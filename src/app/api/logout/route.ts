@@ -1,8 +1,24 @@
 import logout from "@/lib/auth/logout";
+import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function DELETE() {
   try {
+    const supabase = await createClient();
+
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+      return NextResponse.json(
+        {
+          message: "You are not logged in.",
+        },
+        { status: 400 }
+      );
+    }
+
     const { error } = await logout();
 
     if (error) {
