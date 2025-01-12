@@ -9,7 +9,7 @@ export const schema = z
     email: z.string().email({ message: "Invalid email" }),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .min(6, { message: "Password must be at least 6 characters" }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {

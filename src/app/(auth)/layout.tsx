@@ -1,7 +1,19 @@
+import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = async ({ children }: { children: React.ReactNode }) => {
   const currentYear = new Date().getFullYear();
+
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user?.role === "authenticated") {
+    redirect("/dashboard");
+  }
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center gap-6 pt-20 pb-2">
