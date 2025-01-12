@@ -1,0 +1,20 @@
+import { z } from "zod";
+
+export const schema = z
+  .object({
+    name: z
+      .string()
+      .min(4, { message: "Name must be at least 4 characters" })
+      .max(20, { message: "Name must be at most 20 characters" }),
+    email: z.string().email({ message: "Invalid email" }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters" }),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+export type FormFields = z.infer<typeof schema>;
