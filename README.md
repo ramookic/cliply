@@ -7,6 +7,8 @@
 - Next.js
 - TypeScript
 - Supabase
+- React Hook Form
+- Zod
 - Tailwind CSS
 - Jest
 
@@ -103,7 +105,7 @@ CREATE POLICY public_read_clicks
 
 ### 3. Set up environment variables
 
-Rename **example.env** to **.env.local**  and replace with your values
+Rename **example.env** to **.env.local** and replace with your values
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=<your_supabase_url>
@@ -111,6 +113,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
 ```
 
 ### 4. Run the development server
+
 ```bash
 npm run dev
 ```
