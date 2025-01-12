@@ -2,9 +2,9 @@ import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-const Layout = async ({ children }: { children: React.ReactNode }) => {
-  const currentYear = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
 
+const Layout = async ({ children }: { children: React.ReactNode }) => {
   const supabase = await createClient();
 
   const {

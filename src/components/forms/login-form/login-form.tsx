@@ -1,0 +1,50 @@
+"use client";
+
+import Button from "@/components/ui/button/button";
+import Input from "@/components/ui/input/input";
+import { loginAction } from "@/lib/actions";
+import { FormFields, schema } from "@/schemas/login-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormFields>({ resolver: zodResolver(schema) });
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+
+    await loginAction(formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <Input
+        {...register("email")}
+        id="email"
+        error={errors?.email?.message}
+        type="email"
+        placeholder="Your email"
+        label="Email"
+      />
+      <Input
+        {...register("password")}
+        id="password"
+        error={errors?.password?.message}
+        type="password"
+        placeholder="Your password"
+        label="Password"
+      />
+      <Button disabled={isSubmitting} type="submit">
+        Login
+      </Button>
+    </form>
+  );
+};
+
+export default LoginForm;
