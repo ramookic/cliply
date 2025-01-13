@@ -1,4 +1,6 @@
+import Alert from "@/components/ui/alert/alert";
 import LoginForm from "@/components/forms/login-form/login-form";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -10,6 +12,13 @@ const Page = () => {
         </p>
       </div>
       <LoginForm />
+      <Alert />
+      <p className="text-sm text-zinc-500 text-center">
+        Don&apos;t have an account?{" "}
+        <Link href="/register" className="text-primary font-semibold">
+          Register
+        </Link>
+      </p>
     </div>
   );
 };
