@@ -44,7 +44,7 @@ export async function DELETE(): Promise<NextResponse> {
     }
 
     return NextResponse.json(
-      { message: "Successfully logged out" },
+      { message: "User logged out successfully!" },
       { status: 200 }
     );
   } catch (error: unknown) {

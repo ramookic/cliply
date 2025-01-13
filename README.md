@@ -4,13 +4,13 @@
 
 ## Technologies
 
-- Next.js
-- TypeScript
-- Supabase
-- React Hook Form
-- Zod
-- Tailwind CSS
-- Jest
+- `Next.js`
+- `TypeScript`
+- `Supabase`
+- `React Hook Form`
+- `Zod`
+- `Tailwind CSS`
+- `Jest`
 
 ## How to Get Started
 
@@ -116,4 +116,91 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
 
 ```bash
 npm run dev
+```
+
+## API Endpoints
+
+### 1. User registration
+
+- **Endpoint:** `POST /api/register`
+- **Description:** Registers a new user with the provided `name`, `email`, and `password`.
+- **Request Body:**
+
+```json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+- **_Response:_**
+- **Success (200):**
+
+```json
+{
+  "message": "User registered successfully!"
+}
+```
+
+- **Failure (400):**
+
+```json
+{
+  "message": "Registration failed",
+  "errors": "Error message details"
+}
+```
+
+### 2. User login
+
+- **Endpoint:** `POST /api/login`
+- **Description:** Logs in a user with the provided `email`, and `password`.
+- **Request Body:**
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+- **_Response:_**
+- **Success (200):**
+
+```json
+{
+  "message": "User logged in successfully!"
+}
+```
+
+- **Failure (400):**
+
+```json
+{
+  "message": "Login failed",
+  "errors": "Error message details"
+}
+```
+
+### 3. User logout
+
+- **Endpoint:** `DELETE /api/logout`
+- **Description:** Logs out the current user.
+- **_Response:_**
+- **Success (200):**
+
+```json
+{
+  "message": "User logged out successfully!"
+}
+```
+
+- **Failure (400):**
+
+```json
+{
+  "message": "Logout failed",
+  "errors": "Error message details"
+}
 ```
