@@ -1,4 +1,13 @@
-const getEnv = (key: string, defaultValue?: string) => {
+/**
+ * Retrieves an environment variable or throws an error if not found.
+ *
+ * @param {string} key - The environment variable key.
+ * @param {string} [defaultValue] - An optional default value.
+ * @throws {Error} If the variable is missing and no default value is provided.
+ * @returns {string} The environment variable value.
+ */
+
+const getEnv = (key: string, defaultValue?: string): string => {
   const value = process.env[key] || defaultValue;
 
   if (value === undefined) {

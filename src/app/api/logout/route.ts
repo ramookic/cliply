@@ -2,7 +2,22 @@ import logout from "@/lib/auth/logout";
 import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
-export async function DELETE() {
+/**
+ * Handles the logout process for a user.
+ *
+ * - Checks if the user is currently logged in using Supabase's session.
+ * - Logs out the user by calling the `logout` function.
+ * - Returns appropriate responses based on the logout result.
+ *
+ * @returns {Promise<NextResponse>} - A JSON response with the result of the logout process.
+ *
+ * Status codes:
+ * - 200: Logout successful.
+ * - 400: User not logged in or logout process failed.
+ * - 500: Unexpected server error.
+ */
+
+export async function DELETE(): Promise<NextResponse> {
   try {
     const supabase = await createClient();
 

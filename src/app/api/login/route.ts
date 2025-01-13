@@ -4,7 +4,23 @@ import { schema } from "@/schemas/login-schema";
 import login from "@/lib/auth/login";
 import { z } from "zod";
 
-export async function POST(req: NextRequest) {
+/**
+ * Handles the login process for a user.
+ *
+ * - Validates the request body using Zod.
+ * - Checks if the user is already logged in using Supabase's session.
+ * - Attempts to log in the user with the provided credentials.
+ *
+ * @param {NextRequest} req - The incoming HTTP request.
+ * @returns {Promise<NextResponse>} - A JSON response with the result of the login process.
+ *
+ * Status codes:
+ * - 200: Login successful.
+ * - 400: Validation failed, already logged in, or login failed.
+ * - 500: Unexpected server error.
+ */
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const supabase = await createClient();
 

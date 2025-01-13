@@ -4,7 +4,24 @@ import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-export async function POST(req: NextRequest) {
+/**
+ * Handles user registration.
+ *
+ * - Checks if the user is already logged in to prevent multiple sessions.
+ * - Parses and validates the request body against the registration schema.
+ * - Registers a new user using the `register` function.
+ * - Returns appropriate responses based on the outcome.
+ *
+ * @param {NextRequest} req - The incoming request object.
+ * @returns {Promise<NextResponse>} - A JSON response with the registration result.
+ *
+ * Status codes:
+ * - 200: User registered successfully.
+ * - 400: Validation failed, registration failed, or user already logged in.
+ * - 500: Unexpected server error.
+ */
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     // Check if the user is already logged in
     const supabase = await createClient();
