@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import register from "./auth/register";
 import login from "./auth/login";
+import logout from "./auth/logout";
 
 /**
  * Registers a user from the form data.
@@ -44,4 +45,20 @@ export async function loginAction(formData: FormData): Promise<void> {
 
   revalidatePath("/", "layout");
   redirect("/dashboard");
+}
+
+/**
+ * Logs out the current user.
+ * @returns {Promise<void>} - A promise that resolves when the logout process is complete.
+ */
+
+export async function logoutAction(): Promise<void> {
+  const { error } = await logout();
+
+  if (error) {
+    redirect(`/dashboard?error=${error.message}`);
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/login");
 }

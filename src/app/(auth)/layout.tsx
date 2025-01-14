@@ -21,7 +21,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
         <Image src="./logo.svg" width={32} height={32} alt="logo" />
         <h1 className="text-primary text-3xl font-bold">Cliply</h1>
       </div>
-      <div className="max-w-[470px] w-full">{children}</div>
+      <div className="max-w-[440px] w-full">{children}</div>
       <p className="text-zinc-500 text-sm">
         © {currentYear} Cliply - All Rights Reserved
       </p>
