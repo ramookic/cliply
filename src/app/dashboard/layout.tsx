@@ -1,5 +1,10 @@
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <div>{children}</div>;
+  return (
+    <div className="flex flex-row gap-4 w-full h-screen">
+      <aside className="max-w-[240px] w-full">Sidebar</aside>
+      <main className="bg-zinc-100 w-full">{children}</main>
+    </div>
+  );
 };
 
 export default Layout;
