@@ -8,7 +8,7 @@ const usedShortCodes = new Set<string>();
  * @returns A promise resolving to true if the shortcode exists, false otherwise
  */
 
-export async function isShortcodeUsed(shortcode: string): Promise<boolean> {
+export const isShortcodeUsed = async (shortcode: string): Promise<boolean> => {
   const supabase = await createClient();
 
   if (usedShortCodes.has(shortcode)) return true;
@@ -29,7 +29,7 @@ export async function isShortcodeUsed(shortcode: string): Promise<boolean> {
   }
 
   return false;
-}
+};
 
 /**
  * Generates a random shortcode of a specified length.
@@ -37,7 +37,7 @@ export async function isShortcodeUsed(shortcode: string): Promise<boolean> {
  * @returns A random alphanumeric shortcode
  */
 
-export function generateRandomShortcode(length = 6): string {
+export const generateRandomShortcode = (length = 6): string => {
   const chars =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
@@ -45,7 +45,7 @@ export function generateRandomShortcode(length = 6): string {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
-}
+};
 
 /**
  * Generates a unique shortcode by ensuring it doesn't exist in the database.
@@ -53,7 +53,7 @@ export function generateRandomShortcode(length = 6): string {
  * @returns A unique shortcode
  */
 
-export async function generateUniqueShortcode(length = 6): Promise<string> {
+export const generateUniqueShortcode = async (length = 6): Promise<string> => {
   let shortcode: string;
   let isUsed = true;
 
@@ -63,4 +63,4 @@ export async function generateUniqueShortcode(length = 6): Promise<string> {
   } while (isUsed);
 
   return shortcode;
-}
+};

@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 
-type registerProps = {
+type RegisterProps = {
   email: string;
   password: string;
   name: string;
@@ -8,7 +8,7 @@ type registerProps = {
 
 /**
  * Registers a new user with Supabase using their email, password, and name.
- * @param {registerProps} credentials - The user's registration credentials.
+ * @param {RegisterProps} credentials - The user's registration credentials.
  * @returns {Promise<{ error: Error | null }>} - The result of the registration attempt.
  */
 
@@ -16,7 +16,7 @@ const register = async ({
   email,
   password,
   name,
-}: registerProps): Promise<{error: Error | null}> => {
+}: RegisterProps): Promise<{ error: Error | null }> => {
   const supabase = await createClient();
   const { error } = await supabase.auth.signUp({
     email,
