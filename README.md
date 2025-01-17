@@ -122,7 +122,7 @@ npm run dev
 
 ### 1. User registration
 
-- **Endpoint:** `POST /api/register`
+- **Endpoint:** `POST /api/auth/register`
 - **Description:** Registers a new user with the provided `name`, `email`, and `password`.
 - **Request Body:**
 
@@ -154,7 +154,7 @@ npm run dev
 
 ### 2. User login
 
-- **Endpoint:** `POST /api/login`
+- **Endpoint:** `POST /api/auth/login`
 - **Description:** Logs in a user with the provided `email`, and `password`.
 - **Request Body:**
 
@@ -185,7 +185,7 @@ npm run dev
 
 ### 3. User logout
 
-- **Endpoint:** `DELETE /api/logout`
+- **Endpoint:** `DELETE /api/auth/logout`
 - **Description:** Logs out the current user.
 - **_Response:_**
 - **Success (200):**
