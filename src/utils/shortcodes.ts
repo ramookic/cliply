@@ -17,7 +17,7 @@ export const isShortcodeUsed = async (shortcode: string): Promise<boolean> => {
     .from("links")
     .select("*")
     .eq("short_code", shortcode)
-    .single();
+    .maybeSingle();
 
   if (error) {
     throw new Error("Failed to check shortcode.");

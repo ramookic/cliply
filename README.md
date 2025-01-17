@@ -34,7 +34,7 @@ CREATE TABLE public.links (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id UUID NOT NULL,
     original_url TEXT NOT NULL,
-    short_code VARCHAR NOT NULL,
+    short_code VARCHAR NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     expiration_date TIMESTAMP
 );
