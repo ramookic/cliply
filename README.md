@@ -134,24 +134,6 @@ npm run dev
 }
 ```
 
-- **_Response:_**
-- **Success (200):**
-
-```json
-{
-  "message": "User registered successfully!"
-}
-```
-
-- **Failure (400):**
-
-```json
-{
-  "message": "Registration failed",
-  "errors": "Error message details"
-}
-```
-
 ### 2. User login
 
 - **Endpoint:** `POST /api/auth/login`
@@ -165,42 +147,21 @@ npm run dev
 }
 ```
 
-- **_Response:_**
-- **Success (200):**
-
-```json
-{
-  "message": "User logged in successfully!"
-}
-```
-
-- **Failure (400):**
-
-```json
-{
-  "message": "Login failed",
-  "errors": "Error message details"
-}
-```
-
 ### 3. User logout
 
 - **Endpoint:** `DELETE /api/auth/logout`
 - **Description:** Logs out the current user.
-- **_Response:_**
-- **Success (200):**
+
+### 4. Create link
+
+- **Endpoint:** `POST /api/links`
+- **Description:** Creates a new shortened link with provided details.
+- **Request Body:**
 
 ```json
 {
-  "message": "User logged out successfully!"
-}
-```
-
-- **Failure (400):**
-
-```json
-{
-  "message": "Logout failed",
-  "errors": "Error message details"
+  "originalUrl": "https://example.com/article/2283",
+  "shortcode": "eTxRIF", // Optional
+  "expirationDate": "2025-01-18T20:00:00.000Z" // Optional
 }
 ```
