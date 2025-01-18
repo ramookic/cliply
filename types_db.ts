@@ -37,31 +37,31 @@ export type Database = {
       clicks: {
         Row: {
           browser: string | null
-          clicked_at: string
+          clicked_at: string | null
           country: string | null
           device_type: string | null
           id: number
-          link_id: number | null
+          link_id: number
         }
         Insert: {
           browser?: string | null
-          clicked_at?: string
+          clicked_at?: string | null
           country?: string | null
           device_type?: string | null
-          id?: number
-          link_id?: number | null
+          id?: never
+          link_id: number
         }
         Update: {
           browser?: string | null
-          clicked_at?: string
+          clicked_at?: string | null
           country?: string | null
           device_type?: string | null
-          id?: number
-          link_id?: number | null
+          id?: never
+          link_id?: number
         }
         Relationships: [
           {
-            foreignKeyName: "clicks_link_id_fkey"
+            foreignKeyName: "fk_link"
             columns: ["link_id"]
             isOneToOne: false
             referencedRelation: "links"
@@ -71,31 +71,28 @@ export type Database = {
       }
       links: {
         Row: {
-          click_count: number | null
-          created_at: string
+          created_at: string | null
           expiration_date: string | null
           id: number
-          original_url: string | null
-          short_code: string | null
-          user_id: string | null
+          original_url: string
+          short_code: string
+          user_id: string
         }
         Insert: {
-          click_count?: number | null
-          created_at?: string
+          created_at?: string | null
           expiration_date?: string | null
-          id?: number
-          original_url?: string | null
-          short_code?: string | null
-          user_id?: string | null
+          id?: never
+          original_url: string
+          short_code: string
+          user_id: string
         }
         Update: {
-          click_count?: number | null
-          created_at?: string
+          created_at?: string | null
           expiration_date?: string | null
-          id?: number
-          original_url?: string | null
-          short_code?: string | null
-          user_id?: string | null
+          id?: never
+          original_url?: string
+          short_code?: string
+          user_id?: string
         }
         Relationships: []
       }

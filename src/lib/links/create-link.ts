@@ -19,7 +19,7 @@ type CreateLinkProps = {
  * @throws {Error} - Throws an error if the shortcode is already in use or link creation fails.
  */
 
-export const createLink = async ({
+const createLink = async ({
   userId,
   originalUrl,
   shortcode,
@@ -49,7 +49,7 @@ export const createLink = async ({
       short_code: code,
       expiration_date: expirationDate || null,
     })
-    .select("*");
+    .select();
 
   return { data, error };
 };

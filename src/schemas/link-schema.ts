@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const schema = z.object({
-  originalUrl: z.string().url("Invalid URL format."),
   shortcode: z.string().min(4).max(10).optional(),
   expirationDate: z
     .string()
@@ -14,4 +13,14 @@ export const schema = z.object({
       }
     )
     .optional(),
+});
+
+export const createLinkSchema = schema.extend({
+  linkId: z.number(),
+  originalUrl: z.string().url("Invalid URL format."),
+});
+
+export const updateLinkSchema = schema.extend({
+  linkId: z.number(),
+  originalUrl: z.string().url("Invalid URL format.").optional(),
 });
