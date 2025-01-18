@@ -165,3 +165,18 @@ npm run dev
   "expirationDate": "2025-01-18T20:00:00.000Z" // Optional
 }
 ```
+
+### 5. Update link
+
+- **Endpoint:** `PATCH /api/links`
+- **Description:** Updates link with provided details.
+- **Request Body:**
+
+```json
+{
+  "linkId": 245,
+  "originalUrl": "https://example.com/article/2283", // Optional
+  "shortcode": "eTxRIF", // Optional
+  "expirationDate": "2025-01-18T20:00:00.000Z" // Optional
+}
+```
