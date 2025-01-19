@@ -1,4 +1,5 @@
 import createLink from "@/lib/links/create-link";
+import deleteLink from "@/lib/links/delete-link";
 import updateLink from "@/lib/links/update-link";
 import { createLinkSchema, updateLinkSchema } from "@/schemas/link-schema";
 import isAuthenticated from "@/utils/supabase/is-authenticated";
@@ -72,6 +73,30 @@ export async function PATCH(req: NextRequest): Promise<NextResponse> {
 
     return NextResponse.json(
       { message: "Link updated successfully.", data },
+      { status: 200 }
+    );
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "An unknown error occurred";
+
+    return NextResponse.json(
+      { message: "Something went wrong", errors: errorMessage },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const user = await isAuthenticated();
+
+    const body = await req.json();
+    const { linkId } = body;
+
+    await deleteLink({ userId: user.id, linkId });
+
+    return NextResponse.json(
+      { message: "Link deleted successfully." },
       { status: 200 }
     );
   } catch (error: unknown) {
