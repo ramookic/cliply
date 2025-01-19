@@ -16,11 +16,9 @@ export const schema = z.object({
 });
 
 export const createLinkSchema = schema.extend({
-  linkId: z.number(),
   originalUrl: z.string().url("Invalid URL format."),
 });
 
 export const updateLinkSchema = schema.extend({
-  linkId: z.number(),
   originalUrl: z.string().url("Invalid URL format.").optional(),
 });

@@ -168,15 +168,19 @@ npm run dev
 
 ### 5. Update link
 
-- **Endpoint:** `PATCH /api/links`
+- **Endpoint:** `PATCH /api/links/:id`
 - **Description:** Updates link with provided details.
 - **Request Body:**
 
 ```json
 {
-  "linkId": 245,
   "originalUrl": "https://example.com/article/2283", // Optional
   "shortcode": "eTxRIF", // Optional
   "expirationDate": "2025-01-18T20:00:00.000Z" // Optional
 }
 ```
+
+### 5. Delete link
+
+- **Endpoint:** `DELETE /api/links/:id`
+- **Description:** Deletes link with linkId.
