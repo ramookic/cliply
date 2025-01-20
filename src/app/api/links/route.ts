@@ -1,4 +1,5 @@
 import createLink from "@/lib/links/create-link";
+import getAllLinks from "@/lib/links/get-all-links";
 import { createLinkSchema } from "@/schemas/link-schema";
 import isAuthenticated from "@/utils/supabase/is-authenticated";
 import { NextRequest, NextResponse } from "next/server";
@@ -33,6 +34,32 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       { message: "Link created successfully.", data },
       { status: 200 }
     );
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof Error ? error.message : "An unknown error occurred";
+
+    return NextResponse.json(
+      { message: "Something went wrong", errors: errorMessage },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * Handles the GET request for fetching all the links by user id.
+ * @returns {Promise<NextResponse>} - A promise that resolves with the response object containing either success or error details.
+ * @throws {Error} - Throws an error if the user is not authenticated or if there is an issue during the links fetching.
+ */
+
+export async function GET(): Promise<NextResponse> {
+  try {
+    const user = await isAuthenticated();
+
+    const { data, error } = await getAllLinks({ userId: user.id });
+
+    if (error) throw new Error(error.message);
+
+    return NextResponse.json({ message: "Success.", data }, { status: 200 });
   } catch (error: unknown) {
     const errorMessage =
       error instanceof Error ? error.message : "An unknown error occurred";
