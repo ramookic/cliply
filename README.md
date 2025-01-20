@@ -180,7 +180,19 @@ npm run dev
 }
 ```
 
-### 5. Delete link
+### 6. Delete link
 
 - **Endpoint:** `DELETE /api/links/:id`
 - **Description:** Deletes link with linkId.
+
+### 7. Get link
+
+- **Endpoint:** `GET /api/links/:id`
+- **Description:** Fetches the link with provided details.
+- **Request Body:**
+
+```json
+{
+  "linkId": 22
+}
+```
