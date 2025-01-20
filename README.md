@@ -189,10 +189,8 @@ npm run dev
 
 - **Endpoint:** `GET /api/links/:id`
 - **Description:** Fetches the link with provided details.
-- **Request Body:**
 
-```json
-{
-  "linkId": 22
-}
-```
+### 8. Get all links
+
+- **Endpoint:** `GET /api/links`
+- **Description:** Fetches the links with provided details.
