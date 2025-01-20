@@ -15,7 +15,7 @@ type CreateLinkProps = {
 /**
  * Creates a new shortened link.
  * @param {CreateLinkProps} params - The link data.
- * @returns {Promise<{data: Tables<"links">[] | null; error: PostgrestError | null;}>} - A promise that resolves when the link is created.
+ * @returns {Promise<{data: Tables<"links"> | null; error: PostgrestError | null;}>} - A promise that resolves when the link is created.
  * @throws {Error} - Throws an error if the shortcode is already in use or link creation fails.
  */
 
@@ -25,7 +25,7 @@ const createLink = async ({
   shortcode,
   expirationDate,
 }: CreateLinkProps): Promise<{
-  data: Tables<"links">[] | null;
+  data: Tables<"links"> | null;
   error: PostgrestError | null;
 }> => {
   const supabase = await createClient();
@@ -49,7 +49,8 @@ const createLink = async ({
       short_code: code,
       expiration_date: expirationDate || null,
     })
-    .select();
+    .select()
+    .single();
 
   return { data, error };
 };

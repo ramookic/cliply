@@ -16,7 +16,7 @@ type UpdateLinkProps = {
 /**
  * Updates the link.
  * @param {UpdateLinkProps} params - The link data.
- * @returns {Promise<{data: Tables<"links">[];error: PostgrestError | null;}>} - A promise that resolves when the link is updated.
+ * @returns {Promise<{data: Tables<"links">;error: PostgrestError | null;}>} - A promise that resolves when the link is updated.
  */
 
 const updateLink = async ({
@@ -26,7 +26,7 @@ const updateLink = async ({
   shortcode,
   expirationDate,
 }: UpdateLinkProps): Promise<{
-  data: Tables<"links">[] | null;
+  data: Tables<"links"> | null;
   error: PostgrestError | null;
 }> => {
   const supabase = await createClient();
@@ -60,7 +60,8 @@ const updateLink = async ({
     .update({ ...updateData })
     .eq("id", linkId)
     .eq("user_id", userId)
-    .select();
+    .select()
+    .single();
 
   return { data, error };
 };
