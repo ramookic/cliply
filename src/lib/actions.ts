@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import register from "./auth/register";
 import login from "./auth/login";
 import logout from "./auth/logout";
+import isAuthenticated from "@/utils/supabase/is-authenticated";
+import createLink from "./links/create-link";
+import { Tables } from "../../types_db";
 
 /**
  * Registers a user from the form data.
@@ -61,4 +64,32 @@ export const logoutAction = async (): Promise<void> => {
 
   revalidatePath("/", "layout");
   redirect("/login");
+};
+
+/**
+ * Creates new link.
+ * @returns {Promise<void>} - A promise that resolves when the link creation process is complete.
+ */
+
+export const createLinkAction = async (
+  formData: FormData
+): Promise<Tables<"links"> | null> => {
+  const user = await isAuthenticated();
+
+  const originalUrl = formData.get("originalUrl") as string;
+  const shortcode = formData.get("shortcode") as string;
+  const expirationDate = formData.get("expirationDate") as string;
+
+  const { data, error } = await createLink({
+    originalUrl,
+    shortcode,
+    expirationDate,
+    userId: user.id,
+  });
+
+  if (error) {
+    redirect(`/dashboard?error=${error.message}`);
+  }
+
+  return data;
 };
