@@ -12,7 +12,7 @@ import logout from "./auth/logout";
  * @returns {Promise<void>} - A promise that resolves when the registration process is complete.
  */
 
-export async function registerAction(formData: FormData): Promise<void> {
+export const registerAction = async (formData: FormData): Promise<void> => {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -25,7 +25,7 @@ export async function registerAction(formData: FormData): Promise<void> {
 
   revalidatePath("/", "layout");
   redirect("/dashboard");
-}
+};
 
 /**
  * Logs in a user from the form data.
@@ -33,7 +33,7 @@ export async function registerAction(formData: FormData): Promise<void> {
  * @returns {Promise<void>} - A promise that resolves when the login process is complete.
  */
 
-export async function loginAction(formData: FormData): Promise<void> {
+export const loginAction = async (formData: FormData): Promise<void> => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
@@ -45,14 +45,14 @@ export async function loginAction(formData: FormData): Promise<void> {
 
   revalidatePath("/", "layout");
   redirect("/dashboard");
-}
+};
 
 /**
  * Logs out the current user.
  * @returns {Promise<void>} - A promise that resolves when the logout process is complete.
  */
 
-export async function logoutAction(): Promise<void> {
+export const logoutAction = async (): Promise<void> => {
   const { error } = await logout();
 
   if (error) {
@@ -61,4 +61,4 @@ export async function logoutAction(): Promise<void> {
 
   revalidatePath("/", "layout");
   redirect("/login");
-}
+};
