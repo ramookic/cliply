@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import { PostgrestError } from "@supabase/supabase-js";
 
 type DeleteLinkProps = {
   userId: string;
@@ -8,14 +9,13 @@ type DeleteLinkProps = {
 /**
  * Deletes a link.
  * @param {DeleteLinkProps} params - The link and user data.
- * @returns {Promise<void>} - Apromise that resolves when the link is deleted.
- * @throws {Error} - Throws an error if the link is not deleted.
+ * @returns {Promise<{error: PostgrestError | null}>} - Apromise that resolves when the link is deleted.
  */
 
 const deleteLink = async ({
   userId,
   linkId,
-}: DeleteLinkProps): Promise<void> => {
+}: DeleteLinkProps): Promise<{ error: PostgrestError | null }> => {
   const supabase = await createClient();
 
   const { error } = await supabase
@@ -24,9 +24,7 @@ const deleteLink = async ({
     .eq("id", linkId)
     .eq("user_id", userId);
 
-  if (error) {
-    throw new Error(`Failed to delete link: ${error.message}`);
-  }
+  return { error };
 };
 
 export default deleteLink;

@@ -66,7 +66,9 @@ export async function DELETE(
 
     const linkId = parseInt((await params).id);
 
-    await deleteLink({ userId: user.id, linkId });
+    const { error } = await deleteLink({ userId: user.id, linkId });
+
+    if (error) throw new Error(error.message);
 
     return NextResponse.json(
       { message: "Link deleted successfully." },
