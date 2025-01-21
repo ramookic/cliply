@@ -8,6 +8,7 @@ import logout from "./auth/logout";
 import isAuthenticated from "@/utils/supabase/is-authenticated";
 import createLink from "./links/create-link";
 import { Tables } from "../../types_db";
+import deleteLink from "./links/delete-link";
 
 /**
  * Registers a user from the form data.
@@ -92,4 +93,14 @@ export const createLinkAction = async (
   }
 
   return data;
+};
+
+export const deleteLinkAction = async (linkId: number) => {
+  const user = await isAuthenticated();
+
+  const { error } = await deleteLink({ userId: user.id, linkId });
+
+  if (error) {
+    redirect(`/dashboard?error=${error.message}`);
+  }
 };
