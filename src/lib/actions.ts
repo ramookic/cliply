@@ -9,6 +9,7 @@ import isAuthenticated from "@/utils/supabase/is-authenticated";
 import createLink from "./links/create-link";
 import { Tables } from "../../types_db";
 import deleteLink from "./links/delete-link";
+import updateLink from "./links/update-link";
 
 /**
  * Registers a user from the form data.
@@ -94,6 +95,40 @@ export const createLinkAction = async (
 
   return data;
 };
+
+/**
+ * Updates a link.
+ * @returns {Promise<void>} - A promise that resolves when the link update is complete.
+ */
+
+export const updateLinkAction = async (
+  formData: FormData
+): Promise<Tables<"links"> | null> => {
+  const user = await isAuthenticated();
+
+  const linkId = formData.get("linkId") as string;
+  const originalUrl = formData.get("originalUrl") as string;
+  const shortcode = formData.get("shortcode") as string;
+  const expirationDate = formData.get("expirationDate") as string;
+
+  const { data, error } = await updateLink({
+    linkId: parseInt(linkId),
+    originalUrl,
+    shortcode,
+    expirationDate,
+    userId: user.id,
+  });
+
+  if (error) {
+    redirect(`/dashboard?error=${error.message}`);
+  }
+
+  return data;
+};
+
+/**
+ * Deletes a link.
+ */
 
 export const deleteLinkAction = async (linkId: number) => {
   const user = await isAuthenticated();
