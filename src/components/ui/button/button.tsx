@@ -9,7 +9,7 @@ type ButtonProps = {
   disabled?: boolean;
   fit?: boolean;
   linkTo?: string;
-  variant?: "primary" | "secondary" | "dark";
+  variant?: "primary" | "secondary" | "grey" | "dark";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: "string";
 };
@@ -17,6 +17,7 @@ type ButtonProps = {
 const variations = {
   primary: "bg-primary text-white hover:bg-primary-dark",
   secondary: "bg-secondary text-white hover:bg-secondary-dark",
+  grey: "bg-zinc-400 text-white hover:bg-primary",
   dark: "bg-zinc-900 text-white hover:bg-zinc-800",
 };
 
