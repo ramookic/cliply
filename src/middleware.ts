@@ -32,7 +32,7 @@ export async function middleware(request: NextRequest) {
     const { data, error } = await getLinkByShortcode(shortcode);
 
     if (error) {
-      return NextResponse.redirect("/not-found");
+      return NextResponse.next();
     }
 
     if (data?.original_url) {
