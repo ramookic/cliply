@@ -1,8 +1,46 @@
-import { type NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
+import getLinkByShortcode from "./lib/links/get-link-by-shortcode";
+
+const forbiddenShortcodes = new Set([
+  "api",
+  "dashboard",
+  "login",
+  "register",
+  "reset-password",
+]);
+
+function isForbiddenShortcode(pathname: string): boolean {
+  const [firstSegment] = pathname.split("/").filter(Boolean);
+  return forbiddenShortcodes.has(firstSegment);
+}
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  const { pathname } = request.nextUrl;
+
+  if (isForbiddenShortcode(pathname)) {
+    return await updateSession(request);
+  }
+
+  const shortcode = pathname.slice(1);
+
+  if (
+    shortcode &&
+    !shortcode.includes("/") &&
+    !isForbiddenShortcode(shortcode)
+  ) {
+    const { data, error } = await getLinkByShortcode(shortcode);
+
+    if (error) {
+      return NextResponse.redirect("/not-found");
+    }
+
+    if (data?.original_url) {
+      return NextResponse.redirect(data.original_url);
+    }
+  }
+
+  return (await updateSession(request)) || NextResponse.next();
 }
 
 export const config = {
