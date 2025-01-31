@@ -1,6 +1,8 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
 import getLinkByShortcode from "./lib/links/get-link-by-shortcode";
+import createClick from "./lib/clicks/create-click";
+import { UAParser } from "ua-parser-js";
 
 const forbiddenShortcodes = new Set([
   "api",
@@ -31,13 +33,41 @@ export async function middleware(request: NextRequest) {
   ) {
     const { data, error } = await getLinkByShortcode(shortcode);
 
-    if (error) {
+    if (error || !data) {
       return NextResponse.next();
     }
 
-    if (data?.original_url) {
-      return NextResponse.redirect(data.original_url);
+    const userAgent = request.headers.get("user-agent") || "";
+    const parser = new UAParser(userAgent);
+    const browser = parser.getBrowser().name || "Unknown";
+    const deviceType = parser.getDevice().type || "Desktop";
+
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "";
+
+    let country = "Unknown";
+
+    if (ip) {
+      try {
+        const geoRes = await fetch(`http://ip-api.com/json/${ip}`);
+        const geoData = await geoRes.json();
+        country = geoData.country || "Unknown";
+      } catch (geoError) {
+        console.error("Error fetching geo data:", geoError);
+      }
     }
+
+    const { error: clickError } = await createClick({
+      linkId: data.id as number,
+      deviceType,
+      browser,
+      country,
+    });
+
+    if (clickError) {
+      return NextResponse.next();
+    }
+
+    return NextResponse.redirect(data.original_url as string);
   }
 
   return (await updateSession(request)) || NextResponse.next();

@@ -17,9 +17,11 @@ const getLinkByShortcode = async (
 
   const { data, error } = await supabase
     .from("links")
-    .select("original_url, short_code")
+    .select("original_url, short_code, id")
     .eq("short_code", shortcode)
     .single();
+
+  if (!data) throw new Error("Link not found.");
 
   return { data, error };
 };
