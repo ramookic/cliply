@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
-import getLinkByShortcode from "./lib/links/get-link-by-shortcode";
-import createClick from "./lib/clicks/create-click";
-import { UAParser } from "ua-parser-js";
 
 const forbiddenShortcodes = new Set([
   "api",
@@ -31,43 +28,17 @@ export async function middleware(request: NextRequest) {
     !shortcode.includes("/") &&
     !isForbiddenShortcode(shortcode)
   ) {
-    const { data, error } = await getLinkByShortcode(shortcode);
+    const sessionResponse = await updateSession(request);
 
-    if (error || !data) {
-      return NextResponse.next();
-    }
+    const redirectResponse = NextResponse.redirect(
+      new URL(`/api/redirect?shortcode=${shortcode}`, request.url)
+    );
 
-    const userAgent = request.headers.get("user-agent") || "";
-    const parser = new UAParser(userAgent);
-    const browser = parser.getBrowser().name || "Unknown";
-    const deviceType = parser.getDevice().type || "Desktop";
-
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "";
-
-    let country = "Unknown";
-
-    if (ip) {
-      try {
-        const geoRes = await fetch(`http://ip-api.com/json/${ip}`);
-        const geoData = await geoRes.json();
-        country = geoData.country || "Unknown";
-      } catch (geoError) {
-        console.error("Error fetching geo data:", geoError);
-      }
-    }
-
-    const { error: clickError } = await createClick({
-      linkId: data.id as number,
-      deviceType,
-      browser,
-      country,
+    sessionResponse?.headers.forEach((value, key) => {
+      redirectResponse.headers.set(key, value);
     });
 
-    if (clickError) {
-      return NextResponse.next();
-    }
-
-    return NextResponse.redirect(data.original_url as string);
+    return redirectResponse;
   }
 
   return (await updateSession(request)) || NextResponse.next();
@@ -75,13 +46,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

@@ -21,8 +21,6 @@ const getLinkByShortcode = async (
     .eq("short_code", shortcode)
     .single();
 
-  if (!data) throw new Error("Link not found.");
-
   return { data, error };
 };
 
