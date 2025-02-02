@@ -2,26 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import getLinkByShortcode from "@/lib/links/get-link-by-shortcode";
 import createClick from "@/lib/clicks/create-click";
 import { UAParser } from "ua-parser-js";
-import { notFound } from "next/navigation";
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const shortcode = url.searchParams.get("shortcode");
 
-  const isApiRequest =
-    req.headers.get("accept")?.includes("application/json") ||
-    url.searchParams.get("fromApi") === "true";
-
   if (!shortcode || typeof shortcode !== "string") {
-    return isApiRequest
-      ? NextResponse.json({ error: "Invalid shortcode" }, { status: 400 })
-      : NextResponse.redirect(new URL("/not-found", req.url));
+    return NextResponse.json({ error: "Invalid shortcode" }, { status: 400 });
   }
 
   const { data, error } = await getLinkByShortcode(shortcode);
 
   if (error || !data) {
-    return NextResponse.redirect(notFound());
+    return NextResponse.json({ error: "Shortcode not found" }, { status: 404 });
   }
 
   const userAgent = req.headers.get("user-agent") || "";

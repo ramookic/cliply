@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
+import getLinkByShortcode from "./lib/links/get-link-by-shortcode";
 
 const forbiddenShortcodes = new Set([
   "api",
@@ -21,7 +22,15 @@ export async function middleware(request: NextRequest) {
     return await updateSession(request);
   }
 
-  const shortcode = pathname.slice(1);
+  const code = pathname.slice(1);
+
+  const { data, error } = await getLinkByShortcode(code);
+
+  if (!data || error) {
+    return NextResponse.rewrite(new URL("/not-found", request.url));
+  }
+
+  const { short_code: shortcode } = data;
 
   if (
     shortcode &&
