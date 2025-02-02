@@ -64,3 +64,21 @@ export const generateUniqueShortcode = async (length = 6): Promise<string> => {
 
   return shortcode;
 };
+
+/**
+ * Checks if the given pathname is in the forbidden shortcodes list.
+ * @param {string} pathname - The pathname to check.
+ * @returns {boolean} - Returns true if the pathname matches a forbidden shortcode.
+ */
+export const isForbiddenShortcode = (pathname: string): boolean => {
+  const forbiddenShortcodes = new Set([
+    "api",
+    "dashboard",
+    "login",
+    "register",
+    "reset-password",
+  ]);
+
+  const [firstSegment] = pathname.split("/").filter(Boolean);
+  return forbiddenShortcodes.has(firstSegment);
+};

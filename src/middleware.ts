@@ -1,21 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
 import getLinkByShortcode from "./lib/links/get-link-by-shortcode";
+import { isForbiddenShortcode } from "./utils/shortcodes";
 
-const forbiddenShortcodes = new Set([
-  "api",
-  "dashboard",
-  "login",
-  "register",
-  "reset-password",
-]);
+/**
+ * Middleware function for handling URL routing, redirection, and session management.
+ *
+ * - Redirects the user to the login page if they access the root (`/`).
+ * - Validates if a given shortcode exists in the database and redirects or rewrites as necessary.
+ * - Updates session information for authenticated users.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} - The response to send back to the client, which could include redirection, session updates, or next middleware handling.
+ */
 
-function isForbiddenShortcode(pathname: string): boolean {
-  const [firstSegment] = pathname.split("/").filter(Boolean);
-  return forbiddenShortcodes.has(firstSegment);
-}
-
-export async function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
 
   if (pathname === "/") {
