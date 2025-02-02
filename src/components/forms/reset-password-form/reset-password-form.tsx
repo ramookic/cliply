@@ -2,13 +2,11 @@
 
 import Button from "@/components/ui/button/button";
 import Input from "@/components/ui/input/input";
-import { loginAction } from "@/lib/actions";
-import { FormFields, schema } from "@/schemas/login-schema";
+import { FormFields, schema } from "@/schemas/reset-password-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-const LoginForm = () => {
+const ResetPasswordForm = () => {
   const {
     register,
     handleSubmit,
@@ -20,7 +18,7 @@ const LoginForm = () => {
 
     Object.entries(data).forEach(([key, value]) => formData.append(key, value));
 
-    await loginAction(formData);
+    // reset-password-action
   };
 
   return (
@@ -33,25 +31,11 @@ const LoginForm = () => {
         placeholder="Your email"
         label="Email"
       />
-      <Input
-        {...register("password")}
-        id="password"
-        error={errors?.password?.message}
-        type="password"
-        placeholder="Your password"
-        label="Password"
-      />
-      <p className="text-sm text-zinc-500">
-        Forgot your password?{" "}
-        <Link href="/reset-password" className="text-primary font-semibold">
-          Reset
-        </Link>
-      </p>
       <Button disabled={isSubmitting} type="submit">
-        Login
+        Reset
       </Button>
     </form>
   );
 };
 
-export default LoginForm;
+export default ResetPasswordForm;
