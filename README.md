@@ -91,7 +91,6 @@ ALTER TABLE public.clicks ENABLE ROW LEVEL SECURITY;
 CREATE POLICY public_insert_clicks
     ON public.clicks
     FOR INSERT
-    TO authenticated
     WITH CHECK (EXISTS (SELECT 1 FROM public.links WHERE id = link_id));
 
 -- Policy for authenticated users to read clicks
