@@ -4,6 +4,7 @@ import updateLink from "@/lib/links/update-link";
 import { updateLinkSchema } from "@/schemas/link-schema";
 import isAuthenticated from "@/utils/supabase/is-authenticated";
 import { NextRequest, NextResponse } from "next/server";
+import { ZodError } from "zod";
 
 /**
  * Handles the PATCH request for updating a link.
@@ -40,6 +41,16 @@ export async function PATCH(
       { status: 200 }
     );
   } catch (error: unknown) {
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        {
+          message: "Validation failed",
+          errors: error.errors[0].message,
+        },
+        { status: 400 }
+      );
+    }
+
     const errorMessage =
       error instanceof Error ? error.message : "An unknown error occurred";
 
@@ -60,7 +71,7 @@ export async function PATCH(
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+): Promise<NextResponse> {
   try {
     const user = await isAuthenticated();
 
@@ -95,7 +106,7 @@ export async function DELETE(
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+): Promise<NextResponse> {
   try {
     const user = await isAuthenticated();
 

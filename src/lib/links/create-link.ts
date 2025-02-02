@@ -1,4 +1,8 @@
-import { generateUniqueShortcode, isShortcodeUsed } from "@/utils/shortcodes";
+import {
+  generateUniqueShortcode,
+  isForbiddenShortcode,
+  isShortcodeUsed,
+} from "@/utils/shortcodes";
 import { createClient } from "@/utils/supabase/server";
 import { Tables, TablesInsert } from "../../../types_db";
 import { PostgrestError } from "@supabase/supabase-js";
@@ -32,9 +36,10 @@ const createLink = async ({
 
   if (shortcode) {
     const isUsed = await isShortcodeUsed(shortcode);
-    if (isUsed) {
+    const isForbidden = isForbiddenShortcode(shortcode);
+    if (isUsed || isForbidden) {
       throw new Error(
-        `The provided shortcode "${shortcode}" is already in use.`
+        `The provided shortcode "${shortcode}" is already in use or is forbidden.`
       );
     }
   }

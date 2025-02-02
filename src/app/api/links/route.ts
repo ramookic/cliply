@@ -3,6 +3,7 @@ import getAllLinks from "@/lib/links/get-all-links";
 import { createLinkSchema } from "@/schemas/link-schema";
 import isAuthenticated from "@/utils/supabase/is-authenticated";
 import { NextRequest, NextResponse } from "next/server";
+import { ZodError } from "zod";
 
 /**
  * Handles the POST request for creating a new shortened link.
@@ -35,6 +36,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       { status: 200 }
     );
   } catch (error: unknown) {
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        {
+          message: "Validation failed",
+          errors: error.errors[0].message,
+        },
+        { status: 400 }
+      );
+    }
+
     const errorMessage =
       error instanceof Error ? error.message : "An unknown error occurred";
 

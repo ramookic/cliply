@@ -60,7 +60,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json(
         {
           message: "Validation failed",
-          errors: error.errors,
+          errors: error.errors[0].message,
         },
         { status: 400 }
       );
