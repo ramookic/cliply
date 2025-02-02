@@ -194,3 +194,8 @@ npm run dev
 
 - **Endpoint:** `GET /api/links`
 - **Description:** Fetches the links with provided details.
+
+### 8. Redirect
+
+- **Endpoint:** `GET /api/redirect?shortcode=example`
+- **Description:** Redirects to original URL.

@@ -18,6 +18,10 @@ function isForbiddenShortcode(pathname: string): boolean {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
   if (isForbiddenShortcode(pathname)) {
     return await updateSession(request);
   }
