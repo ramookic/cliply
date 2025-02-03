@@ -1,7 +1,8 @@
 import ResetPasswordForm from "@/components/forms/reset-password-form/reset-password-form";
+import Alert from "@/components/ui/alert/alert";
 import Link from "next/link";
 
-const Page = () => {
+const Page = async () => {
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -13,6 +14,7 @@ const Page = () => {
         </p>
       </div>
       <ResetPasswordForm />
+      <Alert />
       <p className="text-sm text-zinc-500 text-center">
         Remember your password?{" "}
         <Link href="/login" className="text-primary font-semibold">

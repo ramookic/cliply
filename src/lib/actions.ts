@@ -10,6 +10,7 @@ import createLink from "./links/create-link";
 import { Tables } from "../../types_db";
 import deleteLink from "./links/delete-link";
 import updateLink from "./links/update-link";
+import resetPassword from "./auth/reset-password";
 
 /**
  * Registers a user from the form data.
@@ -137,5 +138,21 @@ export const deleteLinkAction = async (linkId: number) => {
 
   if (error) {
     redirect(`/dashboard?error=${error.message}`);
+  }
+};
+
+/**
+ * Sends an email to user with password reset link.
+ */
+
+export const resetPasswordAction = async (formData: FormData) => {
+  const email = formData.get("email") as string;
+
+  const redirectTo = "";
+
+  const { error } = await resetPassword(email, redirectTo);
+
+  if (error) {
+    redirect(`/reset-password?error=${error.message}`);
   }
 };

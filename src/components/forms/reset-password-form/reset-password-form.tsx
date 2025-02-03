@@ -2,6 +2,7 @@
 
 import Button from "@/components/ui/button/button";
 import Input from "@/components/ui/input/input";
+import { resetPasswordAction } from "@/lib/actions";
 import { FormFields, schema } from "@/schemas/reset-password-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -18,7 +19,7 @@ const ResetPasswordForm = () => {
 
     Object.entries(data).forEach(([key, value]) => formData.append(key, value));
 
-    // reset-password-action
+    await resetPasswordAction(formData);
   };
 
   return (

@@ -7,11 +7,14 @@ import { AuthError } from "@supabase/supabase-js";
  */
 
 const resetPassword = async (
-  email: string
+  email: string,
+  redirectTo: string
 ): Promise<{ error: AuthError | null }> => {
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.resetPasswordForEmail(email);
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo,
+  });
 
   return { error };
 };
