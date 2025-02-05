@@ -11,6 +11,7 @@ import { Tables } from "../../types_db";
 import deleteLink from "./links/delete-link";
 import updateLink from "./links/update-link";
 import resetPassword from "./auth/reset-password";
+import { headers } from "next/headers";
 
 /**
  * Registers a user from the form data.
@@ -148,7 +149,12 @@ export const deleteLinkAction = async (linkId: number) => {
 export const resetPasswordAction = async (formData: FormData) => {
   const email = formData.get("email") as string;
 
-  const redirectTo = "";
+  const reqHeaders = await headers();
+
+  const host = reqHeaders.get("host") || "localhost:3000";
+  const protocol = host.includes("localhost") ? "http" : "https";
+
+  const redirectTo = `${protocol}://${host}/update-password`;
 
   const { error } = await resetPassword(email, redirectTo);
 
