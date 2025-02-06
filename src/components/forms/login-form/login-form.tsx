@@ -47,7 +47,7 @@ const LoginForm = () => {
           Reset
         </Link>
       </p>
-      <Button disabled={isSubmitting} type="submit">
+      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
         Login
       </Button>
     </form>

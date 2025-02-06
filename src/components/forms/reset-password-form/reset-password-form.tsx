@@ -32,7 +32,7 @@ const ResetPasswordForm = () => {
         placeholder="Your email"
         label="Email"
       />
-      <Button disabled={isSubmitting} type="submit">
+      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
         Reset
       </Button>
     </form>

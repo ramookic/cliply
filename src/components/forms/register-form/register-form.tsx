@@ -56,7 +56,7 @@ const RegisterForm = () => {
         placeholder="Confirm password"
         label="Confirm password"
       />
-      <Button disabled={isSubmitting} type="submit">
+      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
         Register
       </Button>
     </form>

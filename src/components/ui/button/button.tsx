@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import Link from "next/link";
+import Loader from "../loader/loader";
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "grey" | "dark";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: "string";
+  loader?: boolean;
 };
 
 const variations = {
@@ -30,9 +32,10 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   onClick,
   className,
+  loader = false,
 }) => {
   const style = clsx(
-    "px-6 py-4 font-medium text-sm rounded-full transition-all ease-in-out duration-300",
+    "flex justify-center gap-2 px-6 py-4 font-medium text-sm rounded-full transition-all ease-in-out duration-300",
     fit ? "w-fit" : "w-full",
     disabled
       ? "bg-zinc-200 text-zinc-400 cursor-not-allowed"
@@ -50,6 +53,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button className={style} onClick={onClick} type={type} disabled={disabled}>
+      {loader && <Loader />}
       {children}
     </button>
   );
