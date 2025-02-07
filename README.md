@@ -120,7 +120,18 @@ npm run dev
 - **Endpoint:** `GET /api/links`
 - **Description:** Fetches the links with provided details.
 
-### 8. Redirect
+### 9. Redirect
 
 - **Endpoint:** `GET /api/redirect?shortcode=example`
 - **Description:** Redirects to original URL.
+
+### 10. Reset Password
+
+- **Endpoint:** `GET /api/auth/reset-password`
+- **Description:** Sends an email to user containg update password link.
+
+```json
+{
+  "email": "john.doe@example.com"
+}
+```
