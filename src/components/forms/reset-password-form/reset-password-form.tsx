@@ -23,7 +23,7 @@ const ResetPasswordForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <Input
         {...register("email")}
         id="email"

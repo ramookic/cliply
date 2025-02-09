@@ -23,7 +23,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <Input
         {...register("name")}
         id="name"
@@ -42,6 +42,7 @@ const RegisterForm = () => {
       />
       <Input
         {...register("password")}
+        isPassword
         id="password"
         error={errors?.password?.message}
         type="password"
@@ -50,6 +51,7 @@ const RegisterForm = () => {
       />
       <Input
         {...register("confirmPassword")}
+        isPassword
         id="confirmPassword"
         error={errors?.confirmPassword?.message}
         type="password"
