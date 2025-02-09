@@ -16,10 +16,10 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="overflow-y-auto w-full h-screen flex flex-col justify-center items-center gap-10 pt-20 pb-2 px-4">
+    <div className="overflow-y-auto w-full h-screen px-4">
       <div className="flex gap-1 items-center">
         <Image src="./logo.svg" width={32} height={32} alt="logo" />
-        <h1 className="text-primary text-4xl font-extrabold">Cliply</h1>
+        <h1 className="text-zinc-800 text-2xl font-semibold">Cliply</h1>
       </div>
       <div className="max-w-[440px] w-full">{children}</div>
       <p className="text-zinc-500 text-sm">

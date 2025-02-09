@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 import "./globals.css";
-
-const font = Outfit({
-  subsets: ["latin"],
-});
+import { satoshi } from "@/fonts";
 
 export const metadata: Metadata = {
   title: "Cliply",
@@ -18,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className} antialiased`}>{children}</body>
+      <body className={`${satoshi.className} font-medium antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
