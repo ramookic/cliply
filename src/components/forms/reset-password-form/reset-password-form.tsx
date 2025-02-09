@@ -11,7 +11,7 @@ const ResetPasswordForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -32,8 +32,13 @@ const ResetPasswordForm = () => {
         placeholder="Your email"
         label="Email"
       />
-      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
-        Reset
+      <Button
+        variant={isSubmitSuccessful ? "success" : "primary"}
+        disabled={isSubmitting}
+        loader={isSubmitting}
+        type="submit"
+      >
+        {isSubmitSuccessful ? "Success, check your email." : "Reset"}
       </Button>
     </form>
   );

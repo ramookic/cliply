@@ -10,7 +10,7 @@ type ButtonProps = {
   disabled?: boolean;
   fit?: boolean;
   linkTo?: string;
-  variant?: "primary" | "secondary" | "grey" | "dark";
+  variant?: "primary" | "secondary" | "grey" | "dark" | "success";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: "string";
   loader?: boolean;
@@ -21,6 +21,7 @@ const variations = {
   secondary: "bg-secondary text-white hover:bg-secondary-dark",
   grey: "bg-zinc-400 text-white hover:bg-primary",
   dark: "bg-zinc-900 text-white hover:bg-zinc-800",
+  success: "bg-green-500 text-white cursor-not-allowed",
 };
 
 const Button: React.FC<ButtonProps> = ({
