@@ -1,5 +1,5 @@
+import updatePassword from "@/lib/auth/update-password";
 import { schema } from "@/schemas/update-password-schema";
-import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -22,8 +22,6 @@ import { z } from "zod";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
-    const supabase = await createClient();
-
     const body = await req.json();
     const url = new URL(req.url);
     const code = url.searchParams.get("code");
@@ -37,16 +35,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       );
     }
 
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-
-    if (error || !data.session) {
-      return NextResponse.json(
-        { message: "Invalid or expired code." },
-        { status: 400 }
-      );
-    }
-
-    const { error: updateError } = await supabase.auth.updateUser({ password });
+    const { error: updateError } = await updatePassword(code, password);
 
     if (updateError) {
       return NextResponse.json(

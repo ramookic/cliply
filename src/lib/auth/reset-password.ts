@@ -3,7 +3,7 @@ import { AuthError } from "@supabase/supabase-js";
 
 /**
  * Sends the user a log in link via email. Once logged in direct the user to a new password form.
- * @returns {Promise<{ error: AuthError | null }>} - The result of the registration attempt.
+ * @returns {Promise<{ error: AuthError | null }>} - The result of the reset attempt.
  */
 
 const resetPassword = async (
