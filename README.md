@@ -135,3 +135,14 @@ npm run dev
   "email": "john.doe@example.com"
 }
 ```
+
+### 10. Update Password
+
+- **Endpoint:** `GET /api/auth/update-password&code=example-code`
+- **Description:** Updates users password with session code.
+
+```json
+{
+  "password": "password123"
+}
+```
