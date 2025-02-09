@@ -44,7 +44,12 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({ code }) => {
         placeholder="Confirm password"
         label="Confirm password"
       />
-      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
+      <Button
+        variant="dark"
+        disabled={isSubmitting}
+        loader={isSubmitting}
+        type="submit"
+      >
         Update
       </Button>
     </form>

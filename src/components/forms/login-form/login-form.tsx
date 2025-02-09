@@ -43,11 +43,16 @@ const LoginForm = () => {
       />
       <p className="text-sm text-zinc-500">
         Forgot your password?{" "}
-        <Link href="/reset-password" className="text-primary font-semibold">
+        <Link href="/reset-password" className="text-zinc-800 font-semibold">
           Reset
         </Link>
       </p>
-      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
+      <Button
+        variant="dark"
+        disabled={isSubmitting}
+        loader={isSubmitting}
+        type="submit"
+      >
         Login
       </Button>
     </form>

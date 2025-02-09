@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
   loader = false,
 }) => {
   const style = clsx(
-    "flex justify-center gap-2 px-6 py-4 font-medium text-sm rounded-full transition-all ease-in-out duration-300",
+    "flex justify-center gap-2 px-6 py-4 font-medium text-sm rounded-2xl transition-all ease-in-out duration-300",
     fit ? "w-fit" : "w-full",
     disabled
       ? "bg-zinc-200 text-zinc-400 cursor-not-allowed"

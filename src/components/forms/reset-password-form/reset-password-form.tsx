@@ -33,7 +33,7 @@ const ResetPasswordForm = () => {
         label="Email"
       />
       <Button
-        variant={isSubmitSuccessful ? "success" : "primary"}
+        variant={isSubmitSuccessful ? "success" : "dark"}
         disabled={isSubmitting}
         loader={isSubmitting}
         type="submit"

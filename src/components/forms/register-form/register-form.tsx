@@ -56,8 +56,13 @@ const RegisterForm = () => {
         placeholder="Confirm password"
         label="Confirm password"
       />
-      <Button disabled={isSubmitting} loader={isSubmitting} type="submit">
-        Register
+      <Button
+        variant="dark"
+        disabled={isSubmitting}
+        loader={isSubmitting}
+        type="submit"
+      >
+        Create account
       </Button>
     </form>
   );

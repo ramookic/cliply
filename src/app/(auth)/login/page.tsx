@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Page = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <h4 className="text-xl font-semibold text-zinc-800">Welcome back</h4>
+    <div className="flex flex-col gap-6">
+      <div className="text-center flex flex-col gap-2">
+        <h4 className="text-3xl font-bold text-zinc-800">Welcome back</h4>
         <p className="text-sm text-zinc-500">
           Enter your details to access your account.
         </p>
@@ -15,7 +15,7 @@ const Page = () => {
       <Alert />
       <p className="text-sm text-zinc-500 text-center">
         Don&apos;t have an account?{" "}
-        <Link href="/register" className="text-primary font-semibold">
+        <Link href="/register" className="text-zinc-800 font-semibold">
           Register
         </Link>
       </p>
