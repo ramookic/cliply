@@ -55,7 +55,8 @@ npm run dev
 {
   "name": "John Doe",
   "email": "john.doe@example.com",
-  "password": "password123"
+  "password": "password123",
+  "confirmPassword": "password123"
 }
 ```
 
@@ -143,6 +144,7 @@ npm run dev
 
 ```json
 {
-  "password": "password123"
+  "password": "password123",
+  "confirmPassword": "password123"
 }
 ```

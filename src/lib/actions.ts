@@ -12,6 +12,7 @@ import deleteLink from "./links/delete-link";
 import updateLink from "./links/update-link";
 import resetPassword from "./auth/reset-password";
 import { headers } from "next/headers";
+import updatePassword from "./auth/update-password";
 
 /**
  * Registers a user from the form data.
@@ -161,4 +162,24 @@ export const resetPasswordAction = async (formData: FormData) => {
   if (error) {
     redirect(`/reset-password?error=${error.message}`);
   }
+};
+
+/**
+ * Updates users password and redirects to dashboard.
+ */
+
+export const updatePasswordAction = async (
+  formData: FormData,
+  code: string
+) => {
+  const password = formData.get("password") as string;
+
+  const { error } = await updatePassword(code, password);
+
+  if (error) {
+    redirect(`/update-password?error=${error.message}`);
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/dashboard");
 };

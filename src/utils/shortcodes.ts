@@ -77,6 +77,7 @@ export const isForbiddenShortcode = (pathname: string): boolean => {
     "login",
     "register",
     "reset-password",
+    "update-password",
   ]);
 
   const [firstSegment] = pathname.split("/").filter(Boolean);
