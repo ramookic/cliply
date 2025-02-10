@@ -24,9 +24,14 @@ cd cliply
 npm install
 ```
 
-### 2. Set up Supabase database
+### 2. Set up Supabase
 
 In Supabase SQL Editor paste the SQL script from **src/utils/supabase/schema.sql**.
+
+In Supabase Dashboard → Authentication → URL Configuration:
+
+Change the Site URL from `http://localhost:3000` to `https://yourdomain.com`
+In Redirect URLs add `https://yourdomain.com`
 
 ### 3. Set up environment variables
 
@@ -35,6 +40,7 @@ Rename **example.env** to **.env.local** and replace with your values
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=<your_supabase_url>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<your_supabase_anon_key>
+NEXT_PUBLIC_APP_URL=<APPLICATION_URL>
 ```
 
 ### 4. Run the development server
