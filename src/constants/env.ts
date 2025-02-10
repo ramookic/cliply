@@ -19,3 +19,4 @@ const getEnv = (key: string, defaultValue?: string): string => {
 
 export const SUPABASE_URL = getEnv("NEXT_PUBLIC_SUPABASE_URL");
 export const SUPABASE_ANON_KEY = getEnv("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+export const APP_URL = getEnv("NEXT_PUBLIC_APP_URL");

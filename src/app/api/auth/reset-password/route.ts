@@ -1,7 +1,7 @@
+import { APP_URL } from "@/constants/env";
 import resetPassword from "@/lib/auth/reset-password";
 import { schema } from "@/schemas/reset-password-schema";
 import { createClient } from "@/utils/supabase/server";
-import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -40,15 +40,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
 
     const body = await req.json();
-
     const { email } = schema.parse(body);
 
-    const reqHeaders = await headers();
-
-    const host = reqHeaders.get("host") || "localhost:3000";
-    const protocol = host.includes("localhost") ? "http" : "https";
-
-    const redirectTo = `${protocol}://${host}/api/auth/update-password`;
+    const redirectTo = `${APP_URL}/api/auth/update-password`;
 
     const { error } = await resetPassword(email, redirectTo);
 
