@@ -9,6 +9,7 @@ const Page = () => {
       <p>Dashboard page</p>
       <Button
         fit
+        variant="dark"
         onClick={async () => {
           await logoutAction();
         }}

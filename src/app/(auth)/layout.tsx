@@ -1,15 +1,11 @@
-import { createClient } from "@/utils/supabase/server";
+import getUser from "@/lib/auth/get-user";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
 const currentYear = new Date().getFullYear();
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { user } = await getUser();
 
   if (user?.role === "authenticated") {
     redirect("/dashboard");
@@ -17,7 +13,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="h-screen w-full relative">
-      <div className="absolute flex gap-1 items-center mt-8 ml-8">
+      <div className="absolute flex gap-1 items-center mt-6 md:mt-8 ml-6 md:ml-8">
         <Image src="./logo.svg" width={32} height={32} alt="logo" />
         <h1 className="text-zinc-800 text-2xl font-bold">Cliply</h1>
       </div>
