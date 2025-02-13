@@ -1,3 +1,4 @@
+import Navbar from "@/components/ui/navbar/navbar";
 import getUser from "@/lib/auth/get-user";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +16,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       <header className="fixed w-full h-20 px-4 md:px-0">
         <div className="container mx-auto h-full flex items-center justify-between">
           <div className="flex gap-1">
-            <Image src="./logo.svg" width={28} height={28} alt="logo" />
+            <Image src="/logo.svg" width={28} height={28} alt="logo" />
             <Link
               href="/dashboard"
               className="text-zinc-800 text-xl font-bold no-underline"
@@ -23,18 +24,15 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
               Cliply
             </Link>
           </div>
-          <div className="flex gap-4 text-sm">
-            <Link href="/dashboard">Home</Link>
-            <Link href="/dashboard/links">Links</Link>
-            <Link href="/dashboard/analytics">Analytics</Link>
-            <Link href="/dashboard/settings">Settings</Link>
-          </div>
-          <div>
+          <Navbar />
+          <div className="mr-12 md:mr-0">
             <h4 className="text-sm">{user.user_metadata.name}</h4>
           </div>
         </div>
       </header>
-      <main className="container mx-auto w-full pt-28">{children}</main>
+      <main className="container mx-auto w-full px-4 md:px-0 pt-28">
+        {children}
+      </main>
     </div>
   );
 };

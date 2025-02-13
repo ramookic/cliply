@@ -14,7 +14,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-screen w-full relative">
       <div className="absolute flex gap-1 items-center mt-6 md:mt-8 ml-6 md:ml-8">
-        <Image src="./logo.svg" width={32} height={32} alt="logo" />
+        <Image src="/logo.svg" width={32} height={32} alt="logo" />
         <h1 className="text-zinc-800 text-2xl font-bold">Cliply</h1>
       </div>
       <div className="h-screen w-full">
