@@ -56,7 +56,7 @@ const Navbar = () => {
             key={el.id}
             href={el.href}
             className={clsx(
-              "no-underline px-3 py-1 rounded-full font-semibold transition-all ease duration-200 w-fit",
+              "no-underline px-4 py-2 rounded-full font-semibold transition-all ease duration-200 w-fit",
               pathname === el.href
                 ? "bg-zinc-100 text-zinc-900"
                 : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-800"

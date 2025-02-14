@@ -13,7 +13,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="w-full h-screen">
-      <header className="fixed w-full h-20 px-4 md:px-0">
+      <header className="fixed w-full h-20 px-4 md:px-0 bg-white">
         <div className="container mx-auto h-full flex items-center justify-between">
           <div className="flex gap-1">
             <Image src="/logo.svg" width={28} height={28} alt="logo" />
@@ -26,7 +26,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
           </div>
           <Navbar />
           <div className="mr-12 md:mr-0">
-            <h4 className="text-sm">{user.user_metadata.name}</h4>
+            <h4 className="text-sm font-semibold">{user.user_metadata.name}</h4>
           </div>
         </div>
       </header>
