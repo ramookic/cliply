@@ -46,7 +46,7 @@ const Navbar = () => {
         className={clsx(
           "-z-10 md:flex flex-col md:flex-row gap-4 text-sm",
           isOpen
-            ? "fixed w-full h-screen flex bg-white top-0 left-0 pt-14 pl-4"
+            ? "fixed w-full h-screen flex bg-white dark:bg-zinc-900 top-0 left-0 pt-14 pl-4"
             : "hidden"
         )}
       >
@@ -58,8 +58,8 @@ const Navbar = () => {
             className={clsx(
               "no-underline px-4 py-2 rounded-full font-semibold transition-all ease duration-200 w-fit",
               pathname === el.href
-                ? "bg-zinc-100 text-zinc-900"
-                : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-800"
+                ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                : "text-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-200"
             )}
           >
             {el.title}
