@@ -25,7 +25,10 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className="flex flex-col gap-1 relative">
       {label && (
-        <label htmlFor={props.id} className="text-sm font-bold text-zinc-800">
+        <label
+          htmlFor={props.id}
+          className="text-sm font-bold text-zinc-800 dark:text-zinc-100"
+        >
           {label}
         </label>
       )}
@@ -34,7 +37,7 @@ const Input: React.FC<InputProps> = ({
         type={inputType}
         {...props}
         className={clsx(
-          "w-full px-6 py-4 bg-zinc-100 text-zinc-800 text-sm rounded-2xl focus:outline-none focus:ring-2 focus:ring-zinc-200",
+          "w-full px-6 py-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 text-sm rounded-2xl focus:outline-none focus:ring-2 focus:ring-zinc-200 dark:focus:ring-zinc-700 placeholder-zinc-800 dark:placeholder-zinc-200",
           error ? "border-red-500" : "border-gray-300",
           className
         )}
@@ -43,7 +46,7 @@ const Input: React.FC<InputProps> = ({
         {isPassword && (
           <button
             type="button"
-            className="text-lg text-zinc-400 bg-zinc-100 pl-4 py-2 border-none outline-none"
+            className="text-lg text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800 pl-4 py-2 border-none outline-none"
             onClick={() =>
               setInputType(inputType === "password" ? "text" : "password")
             }

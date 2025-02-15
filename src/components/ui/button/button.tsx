@@ -20,7 +20,7 @@ const variations = {
   primary: "bg-primary text-white hover:bg-primary-dark",
   secondary: "bg-secondary text-white hover:bg-secondary-dark",
   grey: "bg-zinc-400 text-white hover:bg-primary",
-  dark: "bg-zinc-900 text-white hover:bg-zinc-800",
+  dark: "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900",
   success: "bg-green-500 text-white cursor-not-allowed",
 };
 
@@ -36,10 +36,10 @@ const Button: React.FC<ButtonProps> = ({
   loader = false,
 }) => {
   const style = clsx(
-    "flex justify-center gap-2 px-6 py-4 font-medium text-sm rounded-2xl transition-all ease-in-out duration-300",
+    "flex justify-center gap-2 px-6 py-4 font-semibold text-sm rounded-2xl transition-all ease-in-out duration-300",
     fit ? "w-fit" : "w-full",
     disabled
-      ? "bg-zinc-200 text-zinc-400 cursor-not-allowed"
+      ? "bg-zinc-200 text-zinc-400 cursor-not-allowed dark:bg-zinc-700"
       : variations[variant],
     className
   );

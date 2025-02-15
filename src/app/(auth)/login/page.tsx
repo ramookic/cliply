@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="text-center flex flex-col gap-2">
-        <h4 className="text-3xl font-bold text-zinc-800">
+        <h4 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100">
           Log in and start sharing
         </h4>
         <p className="text-sm text-zinc-500">
@@ -17,7 +17,10 @@ const Page = () => {
       <Alert />
       <p className="text-sm text-zinc-500 text-center">
         Don&apos;t have an account?{" "}
-        <Link href="/register" className="text-zinc-800 font-semibold">
+        <Link
+          href="/register"
+          className="text-zinc-800 dark:text-zinc-100 font-semibold"
+        >
           Register
         </Link>
       </p>

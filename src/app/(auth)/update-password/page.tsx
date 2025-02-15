@@ -14,7 +14,7 @@ const Page = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="text-center flex flex-col gap-2">
-        <h4 className="text-3xl font-bold text-zinc-800">
+        <h4 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100">
           Update your password
         </h4>
         <p className="text-sm text-zinc-500">Please enter your new password.</p>
@@ -23,7 +23,10 @@ const Page = () => {
       <Alert />
       <p className="text-sm text-zinc-500 text-center">
         Remember your password?{" "}
-        <Link href="/login" className="text-zinc-800 font-semibold">
+        <Link
+          href="/login"
+          className="text-zinc-800 dark:text-zinc-100  font-semibold"
+        >
           Login
         </Link>
       </p>

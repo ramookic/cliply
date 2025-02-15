@@ -1,7 +1,6 @@
+import Logo from "@/components/ui/logo/logo";
 import Navbar from "@/components/ui/navbar/navbar";
 import getUser from "@/lib/auth/get-user";
-import Image from "next/image";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
@@ -13,16 +12,10 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="w-full h-screen">
-      <header className="fixed w-full h-20 px-4 md:px-0 bg-white">
+      <header className="fixed w-full h-20 px-4 md:px-0 bg-white dark:bg-zinc-900">
         <div className="container mx-auto h-full flex items-center justify-between">
           <div className="flex gap-1">
-            <Image src="/logo.svg" width={28} height={28} alt="logo" />
-            <Link
-              href="/dashboard"
-              className="text-zinc-800 text-xl font-bold no-underline"
-            >
-              Cliply
-            </Link>
+            <Logo size={28} className="text-xl" />
           </div>
           <Navbar />
           <div className="mr-12 md:mr-0">

@@ -44,7 +44,10 @@ const LoginForm = () => {
       />
       <p className="text-sm text-zinc-500">
         Forgot your password?{" "}
-        <Link href="/reset-password" className="text-zinc-800 font-semibold">
+        <Link
+          href="/reset-password"
+          className="text-zinc-800 dark:text-zinc-100  font-semibold"
+        >
           Reset
         </Link>
       </p>
