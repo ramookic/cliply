@@ -71,3 +71,8 @@ CREATE POLICY public_read_clicks
     FOR SELECT
     TO authenticated
     USING (true);
+
+-- Create the "profile-images" bucket
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('profile-images', 'profile-images', true)
+ON CONFLICT (id) DO NOTHING;

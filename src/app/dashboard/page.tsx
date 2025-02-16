@@ -5,8 +5,8 @@ import { logoutAction } from "@/lib/actions";
 
 const Page = () => {
   return (
-    <div>
-      <p>Dashboard page</p>
+    <div className="h-screen">
+      <h1 className="font-semibold text-xl">Dashboard</h1>
       <Button
         fit
         variant="dark"

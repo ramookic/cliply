@@ -1,3 +1,4 @@
+import { SUPABASE_URL } from "@/constants/env";
 import { createClient } from "@/utils/supabase/server";
 
 type RegisterProps = {
@@ -24,7 +25,7 @@ const register = async ({
     options: {
       data: {
         name,
-        avatar: "",
+        avatar: `${SUPABASE_URL}/storage/v1/object/public/profile-images/default.jpg`,
       },
     },
   });
