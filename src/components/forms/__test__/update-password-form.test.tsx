@@ -1,5 +1,5 @@
 import { updatePasswordAction } from "@/lib/actions";
-import UpdatePasswordForm from "./update-password-form";
+import UpdatePasswordForm from "../update-password-form";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 jest.mock("../../../lib/actions.ts", () => ({

@@ -1,5 +1,5 @@
 import { resetPasswordAction } from "@/lib/actions";
-import ResetPasswordForm from "./reset-password-form";
+import ResetPasswordForm from "../reset-password-form";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 jest.mock("../../../lib/actions.ts", () => ({

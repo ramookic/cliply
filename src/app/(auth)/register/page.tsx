@@ -1,5 +1,5 @@
-import Alert from "@/components/ui/alert/alert";
-import RegisterForm from "@/components/forms/register-form/register-form";
+import Alert from "@/components/ui/alert";
+import RegisterForm from "@/components/forms/register-form";
 import Link from "next/link";
 
 const Page = () => {

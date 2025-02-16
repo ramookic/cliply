@@ -1,17 +1,14 @@
 "use client";
 
-import Button from "@/components/ui/button/button";
-import Input from "@/components/ui/input/input";
-import { updatePasswordAction } from "@/lib/actions";
-import { FormFields, schema } from "@/schemas/update-password-schema";
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
+import { loginAction } from "@/lib/actions";
+import { FormFields, schema } from "@/schemas/login-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-type UpdatePasswordFormProps = {
-  code: string;
-};
-
-const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({ code }) => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -23,11 +20,19 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({ code }) => {
 
     Object.entries(data).forEach(([key, value]) => formData.append(key, value));
 
-    await updatePasswordAction(formData, code);
+    await loginAction(formData);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+      <Input
+        {...register("email")}
+        id="email"
+        error={errors?.email?.message}
+        type="email"
+        placeholder="Your email"
+        label="Email"
+      />
       <Input
         {...register("password")}
         isPassword
@@ -35,27 +40,27 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({ code }) => {
         error={errors?.password?.message}
         type="password"
         placeholder="Your password"
-        label="New password"
+        label="Password"
       />
-      <Input
-        {...register("confirmPassword")}
-        isPassword
-        id="confirmPassword"
-        error={errors?.confirmPassword?.message}
-        type="password"
-        placeholder="Confirm password"
-        label="Confirm password"
-      />
+      <p className="text-sm text-zinc-500">
+        Forgot your password?{" "}
+        <Link
+          href="/reset-password"
+          className="text-zinc-800 dark:text-zinc-100  font-semibold"
+        >
+          Reset
+        </Link>
+      </p>
       <Button
         variant="dark"
         disabled={isSubmitting}
         loader={isSubmitting}
         type="submit"
       >
-        Update
+        Login
       </Button>
     </form>
   );
 };
 
-export default UpdatePasswordForm;
+export default LoginForm;

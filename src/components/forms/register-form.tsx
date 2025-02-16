@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "@/components/ui/button/button";
-import Input from "@/components/ui/input/input";
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import { registerAction } from "@/lib/actions";
 import { FormFields, schema } from "@/schemas/register-schema";
 import { zodResolver } from "@hookform/resolvers/zod";

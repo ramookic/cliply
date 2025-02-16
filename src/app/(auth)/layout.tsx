@@ -1,4 +1,4 @@
-import Logo from "@/components/ui/logo/logo";
+import Logo from "@/components/ui/logo";
 import getUser from "@/lib/auth/get-user";
 import { redirect } from "next/navigation";
 

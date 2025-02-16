@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "@/components/ui/button/button";
-import Input from "@/components/ui/input/input";
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import { resetPasswordAction } from "@/lib/actions";
 import { FormFields, schema } from "@/schemas/reset-password-schema";
 import { zodResolver } from "@hookform/resolvers/zod";

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import LoginForm from "./login-form";
+import LoginForm from "../login-form";
 import { loginAction } from "@/lib/actions";
 
 jest.mock("../../../lib/actions.ts", () => ({

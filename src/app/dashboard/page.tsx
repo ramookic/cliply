@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/ui/button/button";
+import Button from "@/components/ui/button";
 import { logoutAction } from "@/lib/actions";
 
 const Page = () => {

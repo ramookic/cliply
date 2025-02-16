@@ -1,5 +1,5 @@
-import ResetPasswordForm from "@/components/forms/reset-password-form/reset-password-form";
-import Alert from "@/components/ui/alert/alert";
+import ResetPasswordForm from "@/components/forms/reset-password-form";
+import Alert from "@/components/ui/alert";
 import Link from "next/link";
 
 const Page = async () => {

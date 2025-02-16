@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button/button";
+import Button from "@/components/ui/button";
 
 const NotFound = () => {
   return (
@@ -7,7 +7,7 @@ const NotFound = () => {
         <p className="bg-primary/10 text-primary px-4 py-2 text-sm font-semibold rounded-xl">
           404 Error
         </p>
-        <h2 className="text-zinc-800 font-bold text-4xl">
+        <h2 className="text-zinc-800 dark:text-zinc-100 font-bold text-4xl">
           We&apos;ve lost this page
         </h2>
         <p className="text-sm text-zinc-500">

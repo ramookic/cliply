@@ -1,5 +1,5 @@
-import Logo from "@/components/ui/logo/logo";
-import Navbar from "@/components/ui/navbar/navbar";
+import Logo from "@/components/ui/logo";
+import Navbar from "@/components/ui/navbar";
 import getUser from "@/lib/auth/get-user";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -25,7 +25,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
               <h4 className="text-sm font-semibold">
                 {user.user_metadata.name}
               </h4>
-              <p className="text-sm text-zinc-500 hidden md:block">
+              <p className="text-sm text-zinc-500 hidden lg:block">
                 {user.user_metadata.email}
               </p>
             </div>

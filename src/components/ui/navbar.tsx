@@ -18,25 +18,25 @@ const items = [
     id: 0,
     title: "Home",
     href: "/dashboard",
-    icon: <HiHome />,
+    icon: <HiHome size={18} />,
   },
   {
     id: 1,
     title: "Links",
     href: "/dashboard/links",
-    icon: <HiQueueList />,
+    icon: <HiQueueList size={18} />,
   },
   {
     id: 2,
     title: "Analytics",
     href: "/dashboard/analytics",
-    icon: <HiChartBar />,
+    icon: <HiChartBar size={18} />,
   },
   {
     id: 3,
     title: "Settings",
     href: "/dashboard/settings",
-    icon: <HiCog6Tooth />,
+    icon: <HiCog6Tooth size={18} />,
   },
 ];
 
@@ -67,7 +67,7 @@ const Navbar = () => {
             key={el.id}
             href={el.href}
             className={clsx(
-              "flex gap-1 items-center no-underline px-4 py-2 rounded-full font-semibold transition-all ease duration-200 w-fit",
+              "flex gap-2 items-center no-underline px-4 py-2 rounded-full font-semibold transition-all ease duration-200 w-fit",
               pathname === el.href
                 ? "text-zinc-900 dark:text-zinc-100"
                 : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-200"

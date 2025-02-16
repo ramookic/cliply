@@ -1,7 +1,7 @@
 "use client";
 
-import UpdatePasswordForm from "@/components/forms/update-password-form/update-password-form";
-import Alert from "@/components/ui/alert/alert";
+import UpdatePasswordForm from "@/components/forms/update-password-form";
+import Alert from "@/components/ui/alert";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 
