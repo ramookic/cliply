@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
 
   if (linkTo) {
     return (
-      <Link className={style} href={linkTo}>
+      <Link className={`${style} no-underline`} href={linkTo}>
         {children}
       </Link>
     );
