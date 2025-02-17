@@ -109,22 +109,22 @@ export const updateLinkAction = async (
 ): Promise<Tables<"links"> | null> => {
   const user = await isAuthenticated();
 
-  const linkId = formData.get("linkId") as string;
+  const linkId = Number(formData.get("linkId"));
   const originalUrl = formData.get("originalUrl") as string;
   const shortcode = formData.get("shortcode") as string;
-  const expirationDate = formData.get("expirationDate") as string;
 
   const { data, error } = await updateLink({
-    linkId: parseInt(linkId),
+    linkId: linkId,
     originalUrl,
     shortcode,
-    expirationDate,
     userId: user.id,
   });
 
   if (error) {
     redirect(`/dashboard?error=${error.message}`);
   }
+
+  revalidatePath("/", "layout");
 
   return data;
 };

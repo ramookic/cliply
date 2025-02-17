@@ -22,3 +22,5 @@ export const createLinkSchema = schema.extend({
 export const updateLinkSchema = schema.extend({
   originalUrl: z.string().url("Invalid URL format.").optional(),
 });
+
+export type UpdateLinkFormFields = z.infer<typeof updateLinkSchema>;

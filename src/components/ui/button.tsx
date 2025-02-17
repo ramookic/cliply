@@ -21,7 +21,7 @@ const variations = {
   primary: "bg-primary text-white hover:bg-primary-dark",
   secondary: "bg-secondary text-white hover:bg-secondary-dark",
   outline:
-    "border-2 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800",
+    "outline outline-2 outline-zinc-200 dark:outline-zinc-800 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800",
   dark: "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900",
   success: "bg-green-500 text-white cursor-not-allowed",
 };
