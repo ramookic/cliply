@@ -25,8 +25,6 @@ const getAllLinks = async ({
     .select("*")
     .eq("user_id", userId);
 
-  if (!data || data.length === 0) throw new Error("Links not found.");
-
   return { data, error };
 };
 

@@ -29,8 +29,6 @@ const getLink = async ({
     .eq("user_id", userId)
     .single();
 
-  if (!data) throw new Error("Link not found.");
-
   return { data, error };
 };
 

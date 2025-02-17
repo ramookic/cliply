@@ -68,6 +68,10 @@ export async function GET(): Promise<NextResponse> {
 
     const { data, error } = await getAllLinks({ userId: user.id });
 
+    if (!data || data.length === 0) {
+      throw new Error("Links not found.");
+    }
+
     if (error) throw new Error(error.message);
 
     return NextResponse.json({ message: "Success.", data }, { status: 200 });

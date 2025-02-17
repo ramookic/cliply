@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { useSearchParams } from "next/navigation";
-import Alert from "./alert";
+import Alert from "../alert";
 
 jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
