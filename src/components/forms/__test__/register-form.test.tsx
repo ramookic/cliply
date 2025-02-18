@@ -20,14 +20,14 @@ describe("RegisterForm", () => {
     expect(screen.getByLabelText("Confirm password")).toBeInTheDocument();
 
     expect(
-      screen.getByRole("button", { name: "Register" })
+      screen.getByRole("button", { name: "Create account" })
     ).toBeInTheDocument();
   });
 
   it("displays validation errors for invalid inputs", async () => {
     render(<RegisterForm />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Register" }));
+    fireEvent.click(screen.getByRole("button", { name: "Create account" }));
 
     await waitFor(() => {
       expect(
@@ -56,7 +56,7 @@ describe("RegisterForm", () => {
       target: { value: "Password123" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Register" }));
+    fireEvent.click(screen.getByRole("button", { name: "Create account" }));
 
     await waitFor(() => {
       expect(registerAction).toHaveBeenCalledWith(expect.any(FormData));

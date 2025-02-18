@@ -1,7 +1,11 @@
 import { z } from "zod";
 
 export const schema = z.object({
-  shortcode: z.string().min(4).max(10).optional(),
+  shortcode: z
+    .string()
+    .min(4, { message: "Must contain at least 4 characters" })
+    .max(10, { message: "Must contain at most 10 characters" })
+    .optional(),
   expirationDate: z
     .string()
     .refine(

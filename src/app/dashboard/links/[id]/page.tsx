@@ -31,9 +31,12 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <h1 className="text-xl font-semibold">{data.short_code}</h1>
           <p className="text-sm text-zinc-500">Manage your link here.</p>
         </div>
+        <Link href={`/dashboard/analytics/${data.id}`}>Analytics</Link>
       </div>
-      <div className="bg-white dark:bg-zinc-800 p-6 rounded-2xl">
-        <UpdateLinkForm linkData={data} />
+      <div className="bg-zinc-50 dark:bg-zinc-800 p-2 rounded-3xl">
+        <div className="bg-white dark:bg-zinc-900/70 p-4 rounded-2xl">
+          <UpdateLinkForm linkData={data} />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { getUserLinks } from "@/lib/data-service";
 import Button from "./button";
+import { formatDistanceToNow } from "date-fns";
 
 const LinkList = async () => {
   const { data, error } = await getUserLinks();
@@ -44,11 +45,14 @@ const LinkList = async () => {
             <th scope="col" className="px-6 py-4">
               Created at
             </th>
+            <th scope="col" className="px-6 py-4">
+              Expire after
+            </th>
             <th
               scope="col"
               className="px-6 py-4 rounded-tr-full rounded-br-full"
             >
-              <span className="sr-only">Edit</span>
+              <span className="sr-only">Edit - Delete</span>
             </th>
           </tr>
         </thead>
@@ -76,7 +80,14 @@ const LinkList = async () => {
               <td className="px-6 py-6">
                 {new Date(el.created_at!).toLocaleDateString()}
               </td>
-              <td className="px-6 py-6 text-right flex justify-end">
+              <td className="px-6 py-6">
+                {el.expiration_date === null
+                  ? "Lifetime"
+                  : formatDistanceToNow(new Date(el.expiration_date), {
+                      addSuffix: true,
+                    })}
+              </td>
+              <td className="px-6 py-6 flex gap-4 justify-end">
                 <Button
                   linkTo={`/dashboard/links/${el.id}`}
                   variant="outline"
@@ -84,6 +95,9 @@ const LinkList = async () => {
                   fit
                 >
                   Edit
+                </Button>
+                <Button variant="danger" small fit>
+                  Delete
                 </Button>
               </td>
             </tr>
