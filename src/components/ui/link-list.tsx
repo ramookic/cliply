@@ -1,6 +1,6 @@
 import { getUserLinks } from "@/lib/data-service";
-import Button from "./button";
 import { formatDistanceToNow } from "date-fns";
+import Button from "./button";
 
 const LinkList = async () => {
   const { data, error } = await getUserLinks();
@@ -87,18 +87,19 @@ const LinkList = async () => {
                       addSuffix: true,
                     })}
               </td>
-              <td className="px-6 py-6 flex gap-4 justify-end">
-                <Button
-                  linkTo={`/dashboard/links/${el.id}`}
-                  variant="outline"
-                  small
-                  fit
-                >
-                  Edit
-                </Button>
-                <Button variant="danger" small fit>
-                  Delete
-                </Button>
+              <td className="px-6 py-6 flex justify-end">
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    small
+                    linkTo={`/dashboard/links/${el.id}`}
+                  >
+                    Edit
+                  </Button>
+                  <Button variant="danger" small>
+                    Delete
+                  </Button>
+                </div>
               </td>
             </tr>
           ))}
