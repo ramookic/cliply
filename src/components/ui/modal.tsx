@@ -24,7 +24,7 @@ type ModalProps = {
   children: ReactNode;
 };
 
-function Modal({ children }: ModalProps) {
+const Modal = ({ children }: ModalProps) => {
   const [openName, setOpenName] = useState<string>("");
 
   const close = () => setOpenName("");
@@ -35,28 +35,28 @@ function Modal({ children }: ModalProps) {
       {children}
     </ModalContext.Provider>
   );
-}
+};
 
 type OpenProps = {
   children: ReactElement;
   opens: string;
 };
 
-function Open({ children, opens }: OpenProps) {
+const Open = ({ children, opens }: OpenProps) => {
   const context = useContext(ModalContext);
   if (!context) throw new Error("Modal.Open must be used within a Modal");
 
   return cloneElement(children, {
     onClick: () => context.open(opens),
   } as React.HTMLProps<HTMLElement>);
-}
+};
 
 type WindowProps = {
-  children: ReactElement;
+  children: (onCloseModal: () => void) => ReactNode;
   name: string;
 };
 
-function Window({ children, name }: WindowProps) {
+const Window = ({ children, name }: WindowProps) => {
   const context = useContext(ModalContext);
   if (!context) throw new Error("Modal.Window must be used within a Modal");
 
@@ -77,16 +77,12 @@ function Window({ children, name }: WindowProps) {
         >
           <HiXMark className="w-6 h-6 text-zinc-500" />
         </button>
-        <div>
-          {cloneElement(children, { onCloseModal: close } as {
-            onCloseModal: () => void;
-          })}
-        </div>
+        <div>{children(close)}</div>
       </div>
     </div>,
     document.body
   );
-}
+};
 
 Modal.Open = Open;
 Modal.Window = Window;

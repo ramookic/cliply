@@ -141,6 +141,8 @@ export const deleteLinkAction = async (linkId: number) => {
   if (error) {
     redirect(`/dashboard?error=${error.message}`);
   }
+
+  revalidatePath("/", "layout");
 };
 
 /**

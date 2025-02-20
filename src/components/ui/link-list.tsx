@@ -1,6 +1,7 @@
 import { getUserLinks } from "@/lib/data-service";
 import { formatDistanceToNow } from "date-fns";
 import Button from "./button";
+import DeleteLinkModal from "./delete-link-modal";
 
 const LinkList = async () => {
   const { data, error } = await getUserLinks();
@@ -96,9 +97,7 @@ const LinkList = async () => {
                   >
                     Edit
                   </Button>
-                  <Button variant="danger" small>
-                    Delete
-                  </Button>
+                  <DeleteLinkModal id={el.id} />
                 </div>
               </td>
             </tr>
