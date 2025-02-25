@@ -18,7 +18,7 @@ const Page = async () => {
         <div className="flex items-center">
           <Image
             className="rounded-full h-[54px] object-cover"
-            src={user?.user_metadata.avatar}
+            src={user?.user_metadata.avatar || "/default-avatar.jpg"}
             alt="profile-avatar"
             width={54}
             height={54}

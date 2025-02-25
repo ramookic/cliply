@@ -3,6 +3,8 @@ import Navbar from "@/components/ui/navbar";
 import getUser from "@/lib/auth/get-user";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const { user, error } = await getUser();
@@ -31,7 +33,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
             </div>
             <Image
               className="rounded-full h-[40px] object-cover"
-              src={user.user_metadata.avatar}
+              src={user.user_metadata.avatar || "/default-avatar.jpg"}
               alt="profile-avatar"
               width={40}
               height={40}
@@ -40,7 +42,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
       <main className="container mx-auto w-full px-4 md:px-8 pt-32">
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
       </main>
     </div>
   );
