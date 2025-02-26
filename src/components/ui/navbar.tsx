@@ -46,19 +46,19 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="z-50">
+    <div>
       <button
-        className="absolute md:hidden md:text-xs right-10 top-[42px] z-50 text-2xl text-zinc-800 dark:text-zinc-100"
+        className="absolute md:hidden md:text-xs right-10 top-[42px] z-[999] text-2xl text-zinc-800 dark:text-zinc-100"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <HiXMark /> : <HiBars3BottomRight />}
       </button>
       <div
         className={clsx(
-          "-z-10 md:flex flex-col md:flex-row gap-4 text-sm",
+          "md:flex flex-col md:flex-row gap-4 text-sm",
           isOpen
-            ? "fixed w-full h-screen flex bg-white dark:bg-zinc-900 top-0 left-0 pt-20 pl-4 pb-8 rounded-3xl"
-            : "hidden"
+            ? "fixed w-screen h-screen min-h-full flex bg-white dark:bg-zinc-900 top-0 left-0 pt-20 pl-4 pb-8 rounded-3xl z-50"
+            : "hidden -z-10"
         )}
       >
         {items.map((el) => (

@@ -14,8 +14,8 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="w-full min-h-screen h-full bg-zinc-100 dark:bg-zinc-900">
-      <header className="fixed w-full h-20 px-4 md:px-0">
+    <div className="w-full min-h-screen max-h-screen h-screen bg-zinc-100 dark:bg-zinc-900">
+      <header className="absolute w-full h-20 px-4 md:px-0">
         <div className="container mx-auto h-full flex items-center justify-between bg-white dark:bg-zinc-800 rounded-full mt-4 px-6">
           <div className="flex gap-4">
             <Logo size={28} className="text-xl mr-2" />
@@ -41,7 +41,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </header>
-      <main className="container mx-auto w-full px-4 md:px-8 pt-32">
+      <main className="container mx-auto w-full px-4 md:px-8 pt-32 min-h-screen max-h-screen h-screen overflow-y-scroll no-scrollbar">
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </main>
     </div>
