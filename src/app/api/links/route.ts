@@ -17,8 +17,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const user = await isAuthenticated();
 
     const body = await req.json();
-    const { originalUrl, shortcode, expirationDate } =
-      createLinkSchema.parse(body);
+    const { originalUrl, shortcode } = createLinkSchema.parse(body);
 
     if (!originalUrl) throw new Error("You must provide originalUrl!");
 
@@ -26,7 +25,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       userId: user.id,
       originalUrl,
       shortcode,
-      expirationDate,
     });
 
     if (error) throw new Error(error.message);

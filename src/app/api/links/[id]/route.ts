@@ -21,8 +21,7 @@ export async function PATCH(
     const user = await isAuthenticated();
 
     const body = await req.json();
-    const { originalUrl, shortcode, expirationDate } =
-      updateLinkSchema.parse(body);
+    const { originalUrl, shortcode } = updateLinkSchema.parse(body);
 
     const linkId = parseInt((await params).id);
 
@@ -31,7 +30,6 @@ export async function PATCH(
       userId: user.id,
       originalUrl,
       shortcode,
-      expirationDate,
     });
 
     if (error) throw new Error(error.message);

@@ -8,7 +8,6 @@ jest.mock("../../../lib/actions.ts", () => ({
 
 const linkData = {
   created_at: "example-date",
-  expiration_date: "example-date",
   id: 332,
   original_url: "https://lognurl.com/blog/article/23",
   short_code: "code",

@@ -1,5 +1,4 @@
 import { getUserLinks } from "@/lib/data-service";
-import { formatDistanceToNow } from "date-fns";
 import Button from "./button";
 import DeleteLinkModal from "./delete-link-modal";
 
@@ -46,9 +45,6 @@ const LinkList = async () => {
             <th scope="col" className="px-6 py-4">
               Created at
             </th>
-            <th scope="col" className="px-6 py-4">
-              Expire after
-            </th>
             <th
               scope="col"
               className="px-6 py-4 rounded-tr-full rounded-br-full"
@@ -80,13 +76,6 @@ const LinkList = async () => {
               </td>
               <td className="px-6 py-6">
                 {new Date(el.created_at!).toLocaleDateString()}
-              </td>
-              <td className="px-6 py-6">
-                {el.expiration_date === null
-                  ? "Lifetime"
-                  : formatDistanceToNow(new Date(el.expiration_date), {
-                      addSuffix: true,
-                    })}
               </td>
               <td className="px-6 py-6 flex justify-end">
                 <div className="flex gap-2">
