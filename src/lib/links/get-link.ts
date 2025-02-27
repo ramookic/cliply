@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
-import { Tables } from "../../../types_db";
 import { PostgrestError } from "@supabase/supabase-js";
+import { Tables } from "../../../types_db";
 
 type GetLinkProps = {
   userId: string;

@@ -5,9 +5,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "../ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/ui/button";
-import { Tables } from "../../../types_db";
 import { useState } from "react";
 import { updateLinkAction } from "@/lib/actions";
+import { Tables } from "../../../types_db";
 
 type UpdateLinkFormProps = {
   linkData: Tables<"links">;
@@ -21,8 +21,6 @@ const UpdateLinkForm: React.FC<UpdateLinkFormProps> = ({ linkData }) => {
   } = useForm<UpdateLinkFormFields>({
     resolver: zodResolver(updateLinkSchema),
   });
-
-  console.log(linkData);
 
   const [url, setUrl] = useState(linkData.original_url);
   const [code, setCode] = useState(linkData.short_code);

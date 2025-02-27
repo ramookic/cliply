@@ -94,7 +94,6 @@ npm run dev
 {
   "originalUrl": "https://example.com/article/2283",
   "shortcode": "eTxRIF", // Optional
-  "expirationDate": "2025-01-18T20:00:00.000Z" // Optional
 }
 ```
 
@@ -108,7 +107,6 @@ npm run dev
 {
   "originalUrl": "https://example.com/article/2283", // Optional
   "shortcode": "eTxRIF", // Optional
-  "expirationDate": "2025-01-18T20:00:00.000Z" // Optional
 }
 ```
 

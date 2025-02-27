@@ -7,12 +7,12 @@ import login from "./auth/login";
 import logout from "./auth/logout";
 import isAuthenticated from "@/utils/supabase/is-authenticated";
 import createLink from "./links/create-link";
-import { Tables } from "../../types_db";
 import deleteLink from "./links/delete-link";
 import updateLink from "./links/update-link";
 import resetPassword from "./auth/reset-password";
 import updatePassword from "./auth/update-password";
 import { APP_URL } from "@/constants/env";
+import { Tables } from "../../types_db";
 
 /**
  * Registers a user from the form data.
@@ -83,12 +83,10 @@ export const createLinkAction = async (
 
   const originalUrl = formData.get("originalUrl") as string;
   const shortcode = formData.get("shortcode") as string;
-  const expirationDate = formData.get("expirationDate") as string;
 
   const { data, error } = await createLink({
     originalUrl,
     shortcode,
-    expirationDate,
     userId: user.id,
   });
 

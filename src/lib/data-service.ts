@@ -1,8 +1,8 @@
 import isAuthenticated from "@/utils/supabase/is-authenticated";
 import getAllLinks from "./links/get-all-links";
-import { Tables } from "../../types_db";
 import getLink from "./links/get-link";
 import { PostgrestError } from "@supabase/supabase-js";
+import { Tables } from "../../types_db";
 
 /**
  * Fetches all the links associated with the authenticated user.

@@ -5,7 +5,6 @@ CREATE TABLE public.links (
     original_url TEXT NOT NULL,
     short_code VARCHAR NOT NULL UNIQUE,
     created_at TIMESTAMPTZ DEFAULT NOW(),
-    expiration_date TIMESTAMP
 );
 
 -- Add foreign key constraint for the "user_id" column in links

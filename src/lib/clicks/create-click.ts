@@ -1,6 +1,6 @@
 import { PostgrestError } from "@supabase/supabase-js";
-import { Tables, TablesInsert } from "../../../types_db";
 import { createClient } from "@/utils/supabase/server";
+import { Tables, TablesInsert } from "../../../types_db";
 
 type ClickInsert = TablesInsert<"clicks">;
 
