@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button";
+import CreateLinkModal from "@/components/ui/create-link-modal";
 import LinkList from "@/components/ui/link-list";
 
 const Page = () => {
@@ -9,9 +9,7 @@ const Page = () => {
           <h1 className="text-xl font-semibold">Links</h1>
           <p className="text-sm text-zinc-500">Manage your links here.</p>
         </div>
-        <Button fit variant="dark">
-          Add new link
-        </Button>
+        <CreateLinkModal />
       </div>
       <LinkList />
     </div>

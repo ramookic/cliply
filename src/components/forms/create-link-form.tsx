@@ -47,7 +47,6 @@ const CreateLinkForm = () => {
         disabled={isSubmitting}
         loader={isSubmitting}
         type="submit"
-        fit
       >
         Create
       </Button>
